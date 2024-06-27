@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Sample</title>
+  </head>
+  <body>
+    <h1>Fetching Data</h1>
+    <script>
+      const data =
+        "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
+      async function Fetch() {
+        const promise = await fetch(data);
+        try {
+          if (!promise.ok) {
+            throw new Error(`HTTP error! status: ${promise.status}`);
+          }
+          const data = await promise.json();
+          console.log(data);
+
+          // Population Data
+          const PopulationData = data.data;
+          console.log("Population Data : ");
+          PopulationData.forEach((item) => {
+            console.log(item);
+          });
+        } catch (error) {
+          console.log("Error");
+        }
+      }
+      Fetch();
+    </script>
+  </body>
+</html>
